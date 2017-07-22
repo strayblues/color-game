@@ -6,6 +6,7 @@ body {
 }
 
 h1 {
+  font-size: 26px;
   text-align: center;
   line-height: 1.1;
   color: white;
@@ -17,7 +18,7 @@ h1 {
 }
 
 #colorDisplay {
-  font-size: 160%;
+  font-size: 150%;
 }
 
 .square {
@@ -33,7 +34,7 @@ h1 {
 }
 
 #container {
-  max-width: 600px;
+  max-width: 540px;
   margin: 20px auto;
 }
 
@@ -69,10 +70,17 @@ button {
   font-family: "Montserrat", "Avenir";
   font-weight: 700;
   display: inline-block;
-  width: 20%;
+  width: 17%;
 }
 
 button:hover {
   color: white;
   background: #88a19f;
+}
+
+/* Devices with smaller screens */
+@media (max-width:768px){
+  body {
+    width: 90%;
+  }
 }
