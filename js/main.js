@@ -34,7 +34,7 @@ function handleScore(){
   userGuesses++;
   // Grab color of clicked square and...
   var clickedColor = this.style.backgroundColor;
-  if(userGuesses === 5){
+  if(userGuesses === numSquares-1){ // (userGuesses === 5 or 2)
     if(clickedColor === pickedColor){
       score++;
       reset();
@@ -42,7 +42,7 @@ function handleScore(){
       reset();
     }
   }
-  else { // (userGuesses < 5)
+  else { // (userGuesses < 5 or 2)
     if(clickedColor === pickedColor){
       score++;
       reset();
