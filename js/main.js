@@ -37,7 +37,6 @@ function handleScore(){
   if(userGuesses === 5){
     if(clickedColor === pickedColor){
       score++;
-      alert('Correct! Your score is '+score);
       reset();
     } else {
       reset();
@@ -46,7 +45,6 @@ function handleScore(){
   else { // (userGuesses < 5)
     if(clickedColor === pickedColor){
       score++;
-      alert('Correct! Your score is '+score);
       reset();
     } else {
       this.style.backgroundColor = '#f5f5f5';
@@ -69,7 +67,7 @@ function reset(){
   // Change color display to match picked color
   colorDisplay.textContent = pickedColor;
   resetButton.textContent = 'New Colors';
-  messageDisplay.textContent = '';
+  messageDisplay.textContent = 'Score: ' + score;
   // Change colors of squares
   for(var i=0; i<squares.length; i++){
     if(colors[i]){
