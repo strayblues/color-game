@@ -1,12 +1,13 @@
-var numSquares = 6;
-var colors = [];
-var pickedColor;
-var squares = document.querySelectorAll('.square');
-var colorDisplay = document.getElementById('colorDisplay');
-var messageDisplay = document.querySelector('#message');
-var h1 = document.querySelector('h1');
-var resetButton = document.querySelector('#reset');
-var modeButtons = document.querySelectorAll('.mode');
+var numSquares = 6,
+    colors = [],
+    pickedColor,
+    score = 0,
+    squares = document.querySelectorAll('.square'),
+    colorDisplay = document.getElementById('colorDisplay'),
+    messageDisplay = document.querySelector('#message'),
+    h1 = document.querySelector('h1'),
+    resetButton = document.querySelector('#reset'),
+    modeButtons = document.querySelectorAll('.mode');
 
 
 init();
@@ -37,18 +38,31 @@ function setUpSquares(){
       var clickedColor = this.style.backgroundColor;
       // Compare color to picked color
       if(clickedColor === pickedColor){
-        messageDisplay.textContent = 'Correct!';
-        resetButton.textContent = 'Play Again?';
+        score++;
         changeColors(clickedColor);
-        h1.style.backgroundColor = clickedColor;
+        alert('Correct! Your score is '+score);
+        reset();
+//        resetButton.textContent = 'Play Again?';
       } else {
-        this.style.backgroundColor = '#232323';
-        messageDisplay.textContent = 'Try again';
+        score--;
+        this.style.backgroundColor = '#f5f5f5';
+        alert('Nope! Your score is '+score);
       }
     });
   }
+  return score;
 }
 
+/*
+// Not used, will be called by set up squares
+function handleSuccess(){
+  // Visually indicate what the right color was
+  h1.style.backgroundColor = clickedColor;
+  score = score++;
+  // Write a modal popup that fades out
+  alert('Correct! Your score is '+score);
+}
+*/
 function reset(){
   colors = generateRandomColors(numSquares);
   // Pick a new random color from array
@@ -66,7 +80,8 @@ function reset(){
       squares[i].style.display = 'none';
     }
   }
-  h1.style.backgroundColor = 'steelblue';
+  h1.style.backgroundColor = '#88a19f';
+  score = score;
 }
 
 resetButton.addEventListener('click', function(){
