@@ -34,21 +34,13 @@ function handleScore(){
   userGuesses++;
   // Grab color of clicked square and...
   var clickedColor = this.style.backgroundColor;
-  if(userGuesses === numSquares-1){ // (userGuesses === 5 or 2)
-    if(clickedColor === pickedColor){
-      score++;
+  if(clickedColor === pickedColor){
+    score++;
+    reset();
+  } else if(userGuesses === numSquares-1){ // (userGuesses === 5 or 2)
       reset();
-    } else {
-      reset();
-    }
-  }
-  else { // (userGuesses < 5 or 2)
-    if(clickedColor === pickedColor){
-      score++;
-      reset();
-    } else {
+  } else { // (userGuesses < 5 or 2)
       this.style.backgroundColor = '#f5f5f5';
-    }
   }
 }
 
