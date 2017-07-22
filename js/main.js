@@ -1,3 +1,5 @@
+"use strict";
+
 var numSquares = 6,
     colors = [],
     pickedColor,
@@ -35,7 +37,17 @@ function handleScore(){
   // Grab color of clicked square and...
   var clickedColor = this.style.backgroundColor;
   if(clickedColor === pickedColor){
-    score++;
+    if (userGuesses === 1){
+      score = score+3;
+    } else if (userGuesses === 2){
+      score = score+2;
+    } else if (userGuesses === 3){
+      score++;
+    } else if (userGuesses === 5){
+      score--;
+    } else if (userGuesses === 6){
+      score = score-2;
+    }
     reset();
   } else if(userGuesses === numSquares-1){ // (userGuesses === 5 or 2)
       reset();
