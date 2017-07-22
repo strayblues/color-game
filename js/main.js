@@ -2,13 +2,13 @@ var numSquares = 6,
     colors = [],
     pickedColor,
     score = 0,
+    userGuesses = 0,
     squares = document.querySelectorAll('.square'),
     colorDisplay = document.getElementById('colorDisplay'),
     messageDisplay = document.querySelector('#message'),
     h1 = document.querySelector('h1'),
     resetButton = document.querySelector('#reset'),
     modeButtons = document.querySelectorAll('.mode');
-
 
 init();
 
@@ -30,39 +30,38 @@ function setUpModeButtons(){
   }
 }
 
+function handleScore(){
+  userGuesses++;
+  // Grab color of clicked square and...
+  var clickedColor = this.style.backgroundColor;
+  if(userGuesses === 5){
+    if(clickedColor === pickedColor){
+      score++;
+      alert('Correct! Your score is '+score);
+      reset();
+    } else {
+      reset();
+    }
+  }
+  else { // (userGuesses < 5)
+    if(clickedColor === pickedColor){
+      score++;
+      alert('Correct! Your score is '+score);
+      reset();
+    } else {
+      this.style.backgroundColor = '#f5f5f5';
+    }
+  }
+}
+
 function setUpSquares(){
   for(var i=0; i<squares.length; i++){
     // Add click listeners to squares
-    squares[i].addEventListener('click', function(){
-      // Grab color of clicked square and...
-      var clickedColor = this.style.backgroundColor;
-      // Compare color to picked color
-      if(clickedColor === pickedColor){
-        score++;
-        changeColors(clickedColor);
-        alert('Correct! Your score is '+score);
-        reset();
-//        resetButton.textContent = 'Play Again?';
-      } else {
-        score--;
-        this.style.backgroundColor = '#f5f5f5';
-        alert('Nope! Your score is '+score);
-      }
-    });
+    squares[i].addEventListener('click', handleScore);
   }
   return score;
 }
 
-/*
-// Not used, will be called by set up squares
-function handleSuccess(){
-  // Visually indicate what the right color was
-  h1.style.backgroundColor = clickedColor;
-  score = score++;
-  // Write a modal popup that fades out
-  alert('Correct! Your score is '+score);
-}
-*/
 function reset(){
   colors = generateRandomColors(numSquares);
   // Pick a new random color from array
@@ -82,6 +81,7 @@ function reset(){
   }
   h1.style.backgroundColor = '#88a19f';
   score = score;
+  userGuesses = 0;
 }
 
 resetButton.addEventListener('click', function(){
