@@ -1,14 +1,18 @@
-"use strict";
-
 var numSquares = 6,
     colors = [],
+    hexColor,
     pickedColor,
     score = 0,
     userGuesses = 0,
+    roundOver = false,
+    rounds = 0,
+    failureBadges = 0,
+    lives = 0,
+    RGBModel = true,
     squares = document.querySelectorAll('.square'),
     colorDisplay = document.getElementById('colorDisplay'),
-    messageDisplay = document.querySelector('#message'),
-    h1 = document.querySelector('h1'),
+    messageDisplay = document.querySelector('.message'),
+    h2 = document.querySelector('h2'),
     resetButton = document.querySelector('#reset'),
     modeButtons = document.querySelectorAll('.mode');
 
@@ -42,19 +46,41 @@ function handleScore(){
     } else if (userGuesses === 2){
       score = score+2;
     } else if (userGuesses === 3){
-      score++;
+      score = score+1;
     } else if (userGuesses === 5){
-      score--;
-    } else if (userGuesses === 6){
-      score = score-2;
+      score = score-1;
     }
+    roundOver = true; // Trigger a popup?
+    rounds++;
     reset();
   } else if(userGuesses === numSquares-1){ // (userGuesses === 5 or 2)
+      score = score-2;
+      roundOver = true; // Trigger a popup?
+      rounds++;
       reset();
   } else { // (userGuesses < 5 or 2)
       this.style.backgroundColor = '#f5f5f5';
-      this.removeEventListener('click', handleScore);
   }
+  if (rounds > 4){
+    gameOver();
+  }
+}
+
+function gameOver(){
+  if (score < 1){
+    alert('GAME OVER: Your Score is ' + score + '. You get a failure badge! (Not really)');
+    failureBadges++;
+  }
+  else if (score < 10){
+    alert('GAME OVER: Your Score is ' + score + '.');
+  }
+  else {
+    alert('Your Score is ' + score + '. You have gained an extra life! (Not really)');
+    lives++;
+  }
+  rounds = 0;
+  score = 0;
+  reset();
 }
 
 function setUpSquares(){
@@ -82,12 +108,9 @@ function reset(){
       squares[i].style.display = 'none';
     }
   }
-  h1.style.backgroundColor = '#88a19f';
+  h2.style.backgroundColor = '#88a19f';
   score = score;
   userGuesses = 0;
-  for(var i=0; i<squares.length; i++){
-    squares[i].addEventListener('click', handleScore);
-  }
 }
 
 resetButton.addEventListener('click', function(){
@@ -120,12 +143,30 @@ function generateRandomColors(num){
 }
 
 function randomColor(){
-  // Pick a 'red' from 0 -255
-  var r = Math.floor(Math.random() * 256);
-  // Pick a 'green' from 0 -255
-  var g = Math.floor(Math.random() * 256);
-  // Pick a 'blue' from 0 -255
-  var b = Math.floor(Math.random() * 256);
+  if(RGBModel === true){
+    // Pick a 'red' from 0 -255
+    var r = Math.floor(Math.random() * 256);
+    // Pick a 'green' from 0 -255
+    var g = Math.floor(Math.random() * 256);
+    // Pick a 'blue' from 0 -255
+    var b = Math.floor(Math.random() * 256);
 
-  return "rgb(" + r + ", " + g + ", " + b + ")";
+    return "rgb(" + r + ", " + g + ", " + b + ")";
+  }
+  else {
+    hexColor = '#' + Math.random().toString(16).slice(2, 8).toUpperCase();
+    return hexColor;
+  }
+}
+
+function toggleModel(){
+  if (RGBModel === true){
+    RGBModel = false;
+    $('#toggle').text('RGB');
+  }
+  else {
+    RGBModel = true;
+    $('#toggle').text('Hex');
+  }
+  init();
 }
