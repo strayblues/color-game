@@ -8,7 +8,7 @@ var numSquares = 6,
     rounds = 0,
     failureBadges = 0,
     lives = 0,
-    RGBModel = false,
+    RGBModel = true,
     squares = document.querySelectorAll('.square'),
     colorDisplay = document.getElementById('colorDisplay'),
     messageDisplay = document.querySelector('.message'),
@@ -162,12 +162,11 @@ function randomColor(){
 function toggleModel(){
   if (RGBModel === true){
     RGBModel = false;
-    $('#toggle').text('Hex');
-
+    $('#toggle').text('RGB');
   }
   else {
     RGBModel = true;
-    $('#toggle').text('RGB');
+    $('#toggle').text('Hex');
   }
   init();
 }
