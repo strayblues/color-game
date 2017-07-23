@@ -9,7 +9,7 @@ var numSquares = 6,
     lives = 0,
     squares = document.querySelectorAll('.square'),
     colorDisplay = document.getElementById('colorDisplay'),
-    messageDisplay = document.querySelector('#message'),
+    messageDisplay = document.querySelector('.message'),
     h2 = document.querySelector('h2'),
     resetButton = document.querySelector('#reset'),
     modeButtons = document.querySelectorAll('.mode');
@@ -87,12 +87,6 @@ function setUpSquares(){
     squares[i].addEventListener('click', handleScore);
   }
   return score;
-}
-
-function condition(){
-  if(roundOver === true){
-    $(".gameOver").show();
-  }
 }
 
 function reset(){
