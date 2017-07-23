@@ -8,12 +8,23 @@
   <title>Color Game</title>
 </head>
 <body>
-  <h1>
-    What Color Is
+  <div id="top">
+    <h1>RGB Guessing Game</h1>
+    <p class="info">Links that explain stuff:</p>
+    <a target="_blank" href="https://en.wikipedia.org/wiki/RGB_color_model">The RGB color model</a>
+    <br>
+    <a target="_blank" href="http://www.rapidtables.com/web/color/RGB_Color.htm">Color codes chart</a>
+    <div id="whatIsRgb">
+      <img src="images/AdditiveColor.png" alt="RGB example" width="40%">
+    </div>
+  </div>
+
+  <h2>
+    Color Code:
     <br>
     <span id="colorDisplay">RGB</span>
-  </h1>
-  
+  </h2>
+
   <div id="stripe">
     <button id="reset">New Colors</button>
     <span id="message"></span>
@@ -31,5 +42,9 @@
   </div>
 
   <script type="text/javascript" src="js/main.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
 </body>
 </html>

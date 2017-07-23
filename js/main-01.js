@@ -1,16 +1,14 @@
+"use strict";
+
 var numSquares = 6,
     colors = [],
     pickedColor,
     score = 0,
     userGuesses = 0,
-    roundOver = false,
-    rounds = 0,
-    failureBadges = 0,
-    lives = 0,
     squares = document.querySelectorAll('.square'),
     colorDisplay = document.getElementById('colorDisplay'),
     messageDisplay = document.querySelector('#message'),
-    h2 = document.querySelector('h2'),
+    h1 = document.querySelector('h1'),
     resetButton = document.querySelector('#reset'),
     modeButtons = document.querySelectorAll('.mode');
 
@@ -35,51 +33,33 @@ function setUpModeButtons(){
 }
 
 function handleScore(){
-  userGuesses++;
-  // Grab color of clicked square and...
+  // Grab color of clicked square
   var clickedColor = this.style.backgroundColor;
-  if(clickedColor === pickedColor){
+  userGuesses++;
+
+
+  if(userGuesses === numSquares-1) { // (userGuesses === 5 or 2)
+      score = score-3;
+      reset();
+  } else { // (userGuesses < 5 or 2)
+      this.style.backgroundColor = '#f5f5f5';
+      this.removeEventListener('click', handleScore);
+  }
+
+  do {
     if (userGuesses === 1){
       score = score+3;
     } else if (userGuesses === 2){
       score = score+2;
     } else if (userGuesses === 3){
-      score = score+1;
-    } else if (userGuesses === 5){
       score = score-1;
-    }
-    roundOver = true; // Trigger a popup?
-    rounds++;
-    reset();
-  } else if(userGuesses === numSquares-1){ // (userGuesses === 5 or 2)
+    } else if (userGuesses === 5){
       score = score-2;
-      roundOver = true; // Trigger a popup?
-      rounds++;
-      reset();
-  } else { // (userGuesses < 5 or 2)
-      this.style.backgroundColor = '#f5f5f5';
+    }
+    reset();
   }
-  if (rounds > 4){
-    gameOver();
-  }
-}
+  while (clickedColor !== pickedColor);
 
-function gameOver(){
-  if (score < 1){
-    alert('GAME OVER: Your Score is ' + score + '. You get a failure badge! (Not really)');
-    failureBadges++;
-  }
-  else if (score < 10){
-    alert('GAME OVER: Your Score is ' + score + '.');
-  }
-  else {
-    alert('Your Score is ' + score + '. You have gained an extra life! (Not really)');
-    lives++;
-  }
-  rounds = 0;
-  score = 0;
-  reset();
-}
 
 function setUpSquares(){
   for(var i=0; i<squares.length; i++){
@@ -87,12 +67,6 @@ function setUpSquares(){
     squares[i].addEventListener('click', handleScore);
   }
   return score;
-}
-
-function condition(){
-  if(roundOver === true){
-    $(".gameOver").show();
-  }
 }
 
 function reset(){
@@ -112,9 +86,14 @@ function reset(){
       squares[i].style.display = 'none';
     }
   }
-  h2.style.backgroundColor = '#88a19f';
+  h1.style.backgroundColor = '#88a19f';
   score = score;
   userGuesses = 0;
+
+  // Reset squares
+  for(var i=0; i<squares.length; i++){
+    squares[i].addEventListener('click', handleScore);
+  }
 }
 
 resetButton.addEventListener('click', function(){

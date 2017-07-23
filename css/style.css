@@ -5,20 +5,43 @@ body {
   font-family: "Montserrat", "Avenir";
 }
 
+#top {
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
 h1 {
-  font-size: 24px;
+  font-size: 300%;
+}
+
+h2 {
+  font-size: 26px;
   text-align: center;
-  line-height: 1.1;
-  color: white;
-  background: #88a19f;
+  line-height: 1.5;
+  color: black;
+  background-color: whitesmoke !important;
   margin: 0;
   font-weight: normal;
-  text-transform: uppercase;
   padding: 20px 0;
+}
+
+a {
+  color: #555;
+  line-height: 200%;
+  font-size: 22px;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #999;
 }
 
 #colorDisplay {
   font-size: 150%;
+}
+
+.info {
+  font-size: 22px;
 }
 
 .square {
@@ -39,7 +62,6 @@ h1 {
 }
 
 #stripe {
-  background: white;
   height: 30px;
   text-align: center;
   color: black;
@@ -76,6 +98,11 @@ button {
 button:hover {
   color: white;
   background: #88a19f;
+}
+
+#whatIsRgb{
+  text-align: center;
+  margin: 0 auto;
 }
 
 /* Devices with smaller screens */
