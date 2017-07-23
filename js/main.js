@@ -1,5 +1,6 @@
 var numSquares = 6,
     colors = [],
+    hexColor,
     pickedColor,
     score = 0,
     userGuesses = 0,
@@ -7,6 +8,7 @@ var numSquares = 6,
     rounds = 0,
     failureBadges = 0,
     lives = 0,
+    RGBModel = false,
     squares = document.querySelectorAll('.square'),
     colorDisplay = document.getElementById('colorDisplay'),
     messageDisplay = document.querySelector('.message'),
@@ -141,12 +143,31 @@ function generateRandomColors(num){
 }
 
 function randomColor(){
-  // Pick a 'red' from 0 -255
-  var r = Math.floor(Math.random() * 256);
-  // Pick a 'green' from 0 -255
-  var g = Math.floor(Math.random() * 256);
-  // Pick a 'blue' from 0 -255
-  var b = Math.floor(Math.random() * 256);
+  if(RGBModel === true){
+    // Pick a 'red' from 0 -255
+    var r = Math.floor(Math.random() * 256);
+    // Pick a 'green' from 0 -255
+    var g = Math.floor(Math.random() * 256);
+    // Pick a 'blue' from 0 -255
+    var b = Math.floor(Math.random() * 256);
 
-  return "rgb(" + r + ", " + g + ", " + b + ")";
+    return "rgb(" + r + ", " + g + ", " + b + ")";
+  }
+  else {
+    hexColor = '#' + Math.random().toString(16).slice(2, 8).toUpperCase();
+    return hexColor;
+  }
+}
+
+function toggleModel(){
+  if (RGBModel === true){
+    RGBModel = false;
+    $('#toggle').text('Hex');
+
+  }
+  else {
+    RGBModel = true;
+    $('#toggle').text('RGB');
+  }
+  init();
 }
