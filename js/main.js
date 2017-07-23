@@ -1,8 +1,10 @@
+"use strict";
+
 var numSquares = 6,
     colors = [],
     hexColor,
     pickedColor,
-    score = 0,
+    score,
     userGuesses = 0,
     roundOver = false,
     rounds = 0,
@@ -19,6 +21,7 @@ var numSquares = 6,
 init();
 
 function init(){
+  setScore(0);
   setUpModeButtons();
   setUpSquares();
   reset();
@@ -42,19 +45,19 @@ function handleScore(){
   var clickedColor = this.style.backgroundColor;
   if(clickedColor === pickedColor){
     if (userGuesses === 1){
-      score = score+3;
+      setScore(score+3);
     } else if (userGuesses === 2){
-      score = score+2;
+      setScore(score+2);
     } else if (userGuesses === 3){
-      score = score+1;
+      setScore(score+1);
     } else if (userGuesses === 5){
-      score = score-1;
+      setScore(score-1);
     }
     roundOver = true; // Trigger a popup?
     rounds++;
     reset();
   } else if(userGuesses === numSquares-1){ // (userGuesses === 5 or 2)
-      score = score-2;
+      setScore(score-2);
       roundOver = true; // Trigger a popup?
       rounds++;
       reset();
@@ -67,6 +70,8 @@ function handleScore(){
 }
 
 function gameOver(){
+  setScore(score);
+  console.log('Score: ' + score);
   if (score < 1){
     alert('GAME OVER: Your Score is ' + score + '. You get a failure badge! (Not really)');
     failureBadges++;
@@ -79,7 +84,7 @@ function gameOver(){
     lives++;
   }
   rounds = 0;
-  score = 0;
+  setScore(0);
   reset();
 }
 
@@ -91,6 +96,11 @@ function setUpSquares(){
   return score;
 }
 
+function setScore(newScore){
+  messageDisplay.textContent = 'Score: ' + newScore;
+  score = newScore;
+}
+
 function reset(){
   colors = generateRandomColors(numSquares);
   // Pick a new random color from array
@@ -98,7 +108,6 @@ function reset(){
   // Change color display to match picked color
   colorDisplay.textContent = pickedColor;
   resetButton.textContent = 'New Colors';
-  messageDisplay.textContent = 'Score: ' + score;
   // Change colors of squares
   for(var i=0; i<squares.length; i++){
     if(colors[i]){
@@ -109,7 +118,6 @@ function reset(){
     }
   }
   h2.style.backgroundColor = '#88a19f';
-  score = score;
   userGuesses = 0;
 }
 
