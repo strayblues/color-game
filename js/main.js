@@ -4,16 +4,17 @@ var numSquares = 3,
     colors = [],
     hexColor,
     pickedColor,
+    clickedColor,
     score,
 //    userGuesses = 0,
     roundOver = false,
     rounds = 0,
-    lives = 0,
-    failureBadges = 0,
+    lives = 3,
     RGBModel = true,
     squares = document.querySelectorAll('.square'),
     colorDisplay = document.getElementById('colorDisplay'),
     scoreDisplay = document.querySelector('#score'),
+    livesDisplay = document.querySelector('#lives'),
     h2 = document.querySelector('h2'),
     resetButton = document.querySelector('#reset'),
     modeButtons = document.querySelectorAll('.mode');
@@ -39,7 +40,15 @@ function setUpModeButtons(){
   }
 }
 
+function handleDeath(){
+  if (lives < 1) {
+    $("#life").hide();
+    $("#death").show();
+  }
+}
+
 function handleScore(){
+  handleDeath();
   if (rounds === 4){
     gameOver();
     reset();
@@ -47,14 +56,15 @@ function handleScore(){
   else {
 //    userGuesses++;
     // Grab color of clicked square and...
-    var clickedColor = this.style.backgroundColor;
+    clickedColor = this.style.backgroundColor;
     if(clickedColor === pickedColor){
       setScore(score+1);
+      document.body.style.background = pickedColor;
     }
     else {
       setScore(score-1);
       changeScoreColor();
-      clickedColor = '#f5f5f5';
+      this.style.backgroundColor = '#f5f5f5';
     }
     roundOver = true; // Trigger a popup?
     rounds++;
@@ -73,15 +83,14 @@ function changeScoreColor(){
 
 function gameOver(){
   setScore(score);
-  console.log('Score: ' + score);
+  console.log('Score: ' + score +' Lives: ' + lives);
   rounds = 0;
   if (score > 2){
     lives++;
   }
-  else if (score < -2){
+  else if (score < 0){
     lives--;
   }
-  //this.style.backgroundColor = pickColor;
   alert('Game Over! Score: '+score+' Lives: ' +lives);
   setScore(0);
 }
@@ -92,12 +101,18 @@ function setUpSquares(){
     squares[i].addEventListener('click', handleScore);
   }
   return score;
+  return lives;
 //  setScore(0);
 }
 
 function setScore(newScore){
-  scoreDisplay.textContent = 'Score: ' + newScore;
+  scoreDisplay.textContent = "Score: "+newScore;
   score = newScore;
+}
+
+function setLives(newLives){
+  livesDisplay.textContent = " Lives: "+lives;
+  lives = newLives;
 }
 
 function reset(){
