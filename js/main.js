@@ -9,7 +9,7 @@ var numSquares = 3,
 //    userGuesses = 0,
     roundOver = false,
     rounds = 0,
-    lives,
+    lives = 1,
     RGBModel = true,
     squares = document.querySelectorAll('.square'),
     colorDisplay = document.getElementById('colorDisplay'),
@@ -23,7 +23,7 @@ init();
 
 function init(){
   setScore(0);
-  setLives(1);
+  setLives(lives);
   setUpModeButtons();
   setUpSquares();
   reset();
@@ -35,7 +35,6 @@ function setUpModeButtons(){
       modeButtons[0].classList.remove('selected');
       modeButtons[1].classList.remove('selected');
       this.classList.add('selected');
-//      this.textContent === "Easy" ? numSquares = 3 : numSquares = 6;
       reset();
     });
   }
@@ -80,7 +79,7 @@ function handleCorrect(){
     $('#correct').hide();
     $('#score-holder').show();
     document.body.style.background = 'whitesmoke';
-  }, 1500);
+  }, 500);
 }
 
 function handleWrong(){
@@ -94,13 +93,13 @@ function handleWrong(){
 
 function gameOver(){
   setScore(score);
-  console.log('Score: ' + score +' Lives: ' + lives);
+  console.log('Score: ' + score +' Lives: ' +lives);
   rounds = 0;
-  if (score > 2){
-    lives++;
+  if (score > 0){
+    setLives(lives+1);
   }
   else if (score < 0){
-    lives--;
+    setLives(lives-1);
   }
   alert('Game Over! Score: '+score+' Lives: ' +lives);
   handleDeath();
@@ -113,7 +112,6 @@ function setUpSquares(){
     squares[i].addEventListener('click', handleScore);
   }
   return score;
-//  return lives;
 }
 
 function setScore(newScore){
