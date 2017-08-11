@@ -1,14 +1,15 @@
 "use strict";
 
+const NUM_OF_ROUNDS = 4;
+
 var numSquares = 3,
     colors = [],
     hexColor,
     pickedColor,
     clickedColor,
     score,
-//    userGuesses = 0,
     roundOver = false,
-    rounds = 0,
+    roundCount = 0,
     lives = 1,
     RGBModel = true,
     squares = document.querySelectorAll('.square'),
@@ -41,6 +42,7 @@ function setUpModeButtons(){
 }
 
 function handleDeath(){
+  document.body.style.background = 'whitesmoke';
   if (lives < 1) {
     $("#life").hide();
     $("#death").show();
@@ -48,38 +50,36 @@ function handleDeath(){
 }
 
 function handleScore(){
-  if (rounds === 4){
-    gameOver();
-    reset();
+  clickedColor = this.style.backgroundColor;
+  if(clickedColor === pickedColor){
+    setScore(score+1);
+    handleCorrect();
   }
   else {
-//    userGuesses++;
-    // Grab color of clicked square and...
-    clickedColor = this.style.backgroundColor;
-    if(clickedColor === pickedColor){
-      setScore(score+1);
-      handleCorrect();
-    }
-    else {
-      setScore(score-1);
-      handleWrong();
-      this.style.backgroundColor = '#f5f5f5';
-    }
-    roundOver = true; // Trigger a popup?
-    rounds++;
-    reset();
+    setScore(score-1);
+    handleWrong();
+    this.style.backgroundColor = '#f5f5f5';
   }
+  roundOver = true;
+  roundCount++;
+  if (roundCount === NUM_OF_ROUNDS){
+    gameOver();
+  }
+  reset();
 }
+
 
 function handleCorrect(){
   document.body.style.background = pickedColor;
-  $('#score-holder').hide();
+  $('#colorDisplay').hide();
+  $('#scoreDisplay').hide();
   $('#correct').show();
   setTimeout(function(){
     $('#correct').hide();
-    $('#score-holder').show();
+    $('#colorDisplay').show();
+    $('#scoreDisplay').show();
     document.body.style.background = 'whitesmoke';
-  }, 500);
+  }, 800);
 }
 
 function handleWrong(){
@@ -88,22 +88,22 @@ function handleWrong(){
   scoreText.style.color = 'red';
   setTimeout(function(){
     scoreText.style.color = origColor;
-  }, 2000);
+  }, 1800);
 }
 
 function gameOver(){
   setScore(score);
-  console.log('Score: ' + score +' Lives: ' +lives);
-  rounds = 0;
-  if (score > 0){
+//  console.log('Score: ' + score +' Lives: ' +lives);
+  if (score === NUM_OF_ROUNDS){
     setLives(lives+1);
   }
-  else if (score < 0){
+  else {
     setLives(lives-1);
   }
   alert('Game Over! Score: '+score+' Lives: ' +lives);
   handleDeath();
   setScore(0);
+  roundCount = 0;
 }
 
 function setUpSquares(){
