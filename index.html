@@ -8,41 +8,43 @@
   <title>Color Game</title>
 </head>
 <body>
-  <div class="top">
-    <h1>RGB Guessing Game</h1>
-    <p class="info">Links that explain stuff:</p>
-    <a target="_blank" href="https://en.wikipedia.org/wiki/RGB_color_model">The RGB color model</a>
+<div id="top">
+  <h1>RGB Guessing Game</h1>
+  <p class="info">Links that explain stuff:</p>
+  <a target="_blank" href="https://en.wikipedia.org/wiki/RGB_color_model">The RGB color model</a>
+  <br>
+  <a target="_blank" href="http://www.rapidtables.com/web/color/RGB_Color.htm">Color codes chart</a>
+  <div id="whatIsRgb">
+    <img src="images/AdditiveColor.png" alt="RGB example" width="40%">
+  </div>
+</div>
+<div id="main">
+  <h2>
+    Color Code:
     <br>
-    <a target="_blank" href="http://www.rapidtables.com/web/color/RGB_Color.htm">Color codes chart</a>
-    <div id="whatIsRgb">
-      <img src="images/AdditiveColor.png" alt="RGB example" width="40%">
-    </div>
+    <span id="colorDisplay">RGB</span>
+  </h2>
+  <div class="stripe">
+    <span id="score"></span>
   </div>
 
-    <hr>
+<div class="container">
+  <div class="square"></div>
+  <div class="square"></div>
+  <div class="square"></div>
+</div>
+<div class="stripe">
+  <button id="reset">New Colors</button>
+</div>
 
-    <h2>
-      Color Code:
-      <br>
-      <span id="colorDisplay">RGB</span>
-    </h2>
+</div>
 
-    <div class="stripe">
-      <button id="reset">New Colors</button>
-      <span class="message"></span>
+
 <!--
-      <button class="mode">Easy</button>
-      <button class="mode selected">Hard</button>
--->
-      <button id="toggle" onclick="toggleModel()">Hex</button>
-    </div>
 
-  <div class="container">
-    <div class="square"></div>
-    <div class="square"></div>
-    <div class="square"></div>
-  </div>
-<!--
+    <button class="mode">Easy</button>
+    <button class="mode selected">Hard</button>
+    <button id="toggle" onclick="toggleModel()">Hex</button>
   <div class="container">
 
     <div id="scoreDisplay">
@@ -55,8 +57,8 @@
       </div>
 
     </div>
--->
   </div>
+-->
 
   <script type="text/javascript" src="js/main.js"></script>
   <script

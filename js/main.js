@@ -13,7 +13,7 @@ var numSquares = 3,
     RGBModel = true,
     squares = document.querySelectorAll('.square'),
     colorDisplay = document.getElementById('colorDisplay'),
-    messageDisplay = document.querySelector('.message'),
+    scoreDisplay = document.querySelector('#score'),
     h2 = document.querySelector('h2'),
     resetButton = document.querySelector('#reset'),
     modeButtons = document.querySelectorAll('.mode');
@@ -53,13 +53,22 @@ function handleScore(){
     }
     else {
       setScore(score-1);
-      this.style.backgroundColor = '#f5f5f5';
-      alert('Nope!');
+      changeScoreColor();
+      clickedColor = '#f5f5f5';
     }
     roundOver = true; // Trigger a popup?
     rounds++;
     reset();
   }
+}
+
+function changeScoreColor(){
+  var scoreText = document.getElementById('score');
+  var origColor = scoreText.style.color;
+  scoreText.style.color = 'red';
+   setTimeout(function(){
+     scoreText.style.color = origColor;
+   }, 2000);
 }
 
 function gameOver(){
@@ -72,6 +81,7 @@ function gameOver(){
   else if (score < -2){
     lives--;
   }
+  //this.style.backgroundColor = pickColor;
   alert('Game Over! Score: '+score+' Lives: ' +lives);
   setScore(0);
 }
@@ -86,7 +96,7 @@ function setUpSquares(){
 }
 
 function setScore(newScore){
-  messageDisplay.textContent = 'Score: ' + newScore;
+  scoreDisplay.textContent = 'Score: ' + newScore;
   score = newScore;
 }
 

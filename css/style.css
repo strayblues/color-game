@@ -57,7 +57,7 @@ a:hover {
   color: #999;
 }
 
-.top {
+#top {
   margin-top: 50px;
   margin-bottom: 40px;
 }
@@ -78,9 +78,10 @@ a:hover {
   -moz-transition: background 0.6s;
 }
 
-.container {
+#main {
   max-width: 540px;
-  margin: 20px auto;
+  padding-bottom: 200px;
+  margin-bottom: 40px;
 }
 
 .stripe {
@@ -94,7 +95,7 @@ a:hover {
   background: #88a19f;
 }
 
-.message {
+#score {
   color: #444;
   font-family: "Montserrat", "Avenir";
   font-weight: 700;
