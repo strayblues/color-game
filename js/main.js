@@ -9,7 +9,7 @@ var numSquares = 3,
 //    userGuesses = 0,
     roundOver = false,
     rounds = 0,
-    lives = 3,
+    lives,
     RGBModel = true,
     squares = document.querySelectorAll('.square'),
     colorDisplay = document.getElementById('colorDisplay'),
@@ -23,7 +23,7 @@ init();
 
 function init(){
   setScore(0);
-  setLives(3);
+  setLives(1);
   setUpModeButtons();
   setUpSquares();
   reset();
@@ -49,7 +49,6 @@ function handleDeath(){
 }
 
 function handleScore(){
-  handleDeath();
   if (rounds === 4){
     gameOver();
     reset();
@@ -104,6 +103,7 @@ function gameOver(){
     lives--;
   }
   alert('Game Over! Score: '+score+' Lives: ' +lives);
+  handleDeath();
   setScore(0);
 }
 
@@ -113,7 +113,7 @@ function setUpSquares(){
     squares[i].addEventListener('click', handleScore);
   }
   return score;
-  return lives;
+//  return lives;
 }
 
 function setScore(newScore){
@@ -122,7 +122,7 @@ function setScore(newScore){
 }
 
 function setLives(newLives){
-  livesDisplay.textContent = "Lives: "+lives;
+  livesDisplay.textContent = "Lives: "+newLives;
   lives = newLives;
 }
 
