@@ -23,6 +23,7 @@ init();
 
 function init(){
   setScore(0);
+  setLives(3);
   setUpModeButtons();
   setUpSquares();
   reset();
@@ -59,11 +60,11 @@ function handleScore(){
     clickedColor = this.style.backgroundColor;
     if(clickedColor === pickedColor){
       setScore(score+1);
-      handleWin();
+      handleCorrect();
     }
     else {
       setScore(score-1);
-      handleLose();
+      handleWrong();
       this.style.backgroundColor = '#f5f5f5';
     }
     roundOver = true; // Trigger a popup?
@@ -72,17 +73,18 @@ function handleScore(){
   }
 }
 
-function handleWin(){
-  var origtext = h2.textContent;
+function handleCorrect(){
   document.body.style.background = pickedColor;
-  $('h2').text('Correct');
+  $('#score-holder').hide();
+  $('#correct').show();
   setTimeout(function(){
+    $('#correct').hide();
+    $('#score-holder').show();
     document.body.style.background = 'whitesmoke';
-    h2.textContent = origtext;
   }, 1500);
 }
 
-function handleLose(){
+function handleWrong(){
   var scoreText = document.getElementById('score');
   var origColor = scoreText.style.color;
   scoreText.style.color = 'red';
@@ -110,7 +112,6 @@ function setUpSquares(){
     // Add click listeners to squares
     squares[i].addEventListener('click', handleScore);
   }
-  setLives(3);
   return score;
   return lives;
 }
@@ -142,7 +143,6 @@ function reset(){
     }
   }
   h2.style.backgroundColor = '#88a19f';
-//  userGuesses = 0;
 }
 
 resetButton.addEventListener('click', function(){

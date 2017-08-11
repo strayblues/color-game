@@ -85,15 +85,16 @@ a:hover {
   margin-bottom: 40px;
 }
 
-#win {
+#correct {
   font-family: "Montserrat", "Avenir";
   color: #efd551;
-  font-size: 50px;
+  font-size: 20px;
   display: none;
 }
 
 #death {
   display: none;
+  text-align: center;
 }
 
 .stripe {
