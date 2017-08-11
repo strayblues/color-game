@@ -10,7 +10,6 @@ var numSquares = 3,
     rounds = 0,
     lives = 0,
     failureBadges = 0,
-    lives = 0,
     RGBModel = true,
     squares = document.querySelectorAll('.square'),
     colorDisplay = document.getElementById('colorDisplay'),
@@ -73,7 +72,7 @@ function gameOver(){
   else if (score < -2){
     lives--;
   }
-  alert('Game Over! Lives: ' +lives);
+  alert('Game Over! Score: '+score+' Lives: ' +lives);
   setScore(0);
 }
 
