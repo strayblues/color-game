@@ -6,7 +6,7 @@ body {
 }
 
 h1 {
-  font-size: 300%;
+  text-align: center;
 }
 
 h2 {
@@ -79,10 +79,21 @@ a:hover {
   -moz-transition: background 0.6s;
 }
 
-#life, #death {
+#life, #death, #win {
   max-width: 540px;
   padding-bottom: 200px;
   margin-bottom: 40px;
+}
+
+#win {
+  font-family: "Montserrat", "Avenir";
+  color: #efd551;
+  font-size: 50px;
+  display: none;
+}
+
+#death {
+  display: none;
 }
 
 .stripe {
@@ -95,6 +106,10 @@ a:hover {
 .selected {
   color: white;
   background: #88a19f;
+}
+
+#reset{
+  display: none;
 }
 
 #score, #lives {

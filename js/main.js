@@ -59,11 +59,11 @@ function handleScore(){
     clickedColor = this.style.backgroundColor;
     if(clickedColor === pickedColor){
       setScore(score+1);
-      document.body.style.background = pickedColor;
+      handleWin();
     }
     else {
       setScore(score-1);
-      changeScoreColor();
+      handleLose();
       this.style.backgroundColor = '#f5f5f5';
     }
     roundOver = true; // Trigger a popup?
@@ -72,13 +72,23 @@ function handleScore(){
   }
 }
 
-function changeScoreColor(){
+function handleWin(){
+  var origtext = h2.textContent;
+  document.body.style.background = pickedColor;
+  $('h2').text('Correct');
+  setTimeout(function(){
+    document.body.style.background = 'whitesmoke';
+    h2.textContent = origtext;
+  }, 1500);
+}
+
+function handleLose(){
   var scoreText = document.getElementById('score');
   var origColor = scoreText.style.color;
   scoreText.style.color = 'red';
-   setTimeout(function(){
-     scoreText.style.color = origColor;
-   }, 2000);
+  setTimeout(function(){
+    scoreText.style.color = origColor;
+  }, 2000);
 }
 
 function gameOver(){
@@ -100,9 +110,9 @@ function setUpSquares(){
     // Add click listeners to squares
     squares[i].addEventListener('click', handleScore);
   }
+  setLives(3);
   return score;
   return lives;
-//  setScore(0);
 }
 
 function setScore(newScore){
@@ -111,7 +121,7 @@ function setScore(newScore){
 }
 
 function setLives(newLives){
-  livesDisplay.textContent = " Lives: "+lives;
+  livesDisplay.textContent = "Lives: "+lives;
   lives = newLives;
 }
 
@@ -181,6 +191,7 @@ function randomColor(){
   }
 }
 
+/*
 function toggleModel(){
   if (RGBModel === true){
     RGBModel = false;
@@ -192,3 +203,4 @@ function toggleModel(){
   }
   init();
 }
+*/
