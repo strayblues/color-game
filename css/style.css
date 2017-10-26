@@ -136,6 +136,7 @@ a:hover {
 #colorDisplay {
   font-size: 100%;
 }
+
 /*
 #scoreDisplay {
   margin-top: 24rem;
@@ -151,6 +152,25 @@ a:hover {
   font-weight: 700;
 }
 */
+
+.square {
+  transition: all .25s ease-in-out;
+  transform: scale(1);
+}
+
+.square:hover {
+  transform: scale(1.1);
+}
+
+.animateWrong {
+  transition: all .75s ease-in-out;
+  border-radius: 0;
+}
+
+.animateCorrect {
+  transform: scale(1.1);
+  transform: scale(.5);
+}
 
 /* Devices with smaller screens */
 @media (max-width:768px){
