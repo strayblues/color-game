@@ -166,12 +166,16 @@ a:hover {
   transform: scale(1.1);
 }
 
-.animateWrong {
+.changeShape {
   transition: all .75s ease-in-out;
   border-radius: 0;
 }
 
-.animateCorrect {
+.opacity {
+  opacity: 0;
+}
+
+.scaleDown {
   transform: scale(.5);
 }
 

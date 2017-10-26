@@ -96,14 +96,14 @@ function setLevel(){
 }
 
 function handleCorrect(){
-  $(selectedItem).addClass('animateCorrect');
+  $(selectedItem).addClass('scaleDown');
 //  document.body.style.background = pickedColor;
-  $('.square').addClass('animateCorrect');
+  $('.square').addClass('scaleDown');
   $('#colorDisplay').hide();
   $('#scoreDisplay').hide();
   $('#msg-success').show();
   setTimeout(function(){
-    $('.square').removeClass('animateCorrect');
+    $('.square').removeClass('scaleDown');
     $('#msg-success').hide();
     $('#colorDisplay').show();
     $('#scoreDisplay').show();
@@ -112,15 +112,17 @@ function handleCorrect(){
 }
 
 function handleWrong(){
-  $(selectedItem).addClass('animateWrong');
+  $(selectedItem).addClass('changeShape');
+  $('.square').addClass('scaleDown');
   var scoreText = document.getElementById('score');
   var origColor = scoreText.style.color;
   scoreText.style.color = 'red';
 
   setTimeout(function(){
-    $(selectedItem).removeClass('animateWrong');
+    $(selectedItem).removeClass('changeShape');
+    $('.square').removeClass('scaleDown');
     scoreText.style.color = origColor;
-  }, 500);
+  }, 1250);
 }
 
 function handleGetALife(){
