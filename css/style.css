@@ -84,7 +84,11 @@ a:hover {
   margin-bottom: 40px;
 }
 
-#correct {
+.scoreOrMsg {
+  height: 115px;
+}
+
+#msg-success {
   font-family: "Montserrat", "Avenir";
   color: #efd551;
   font-size: 20px;
@@ -168,8 +172,11 @@ a:hover {
 }
 
 .animateCorrect {
-  transform: scale(1.1);
   transform: scale(.5);
+}
+
+.animateCorrect:active {
+  transform: scale(1.1);
 }
 
 /* Devices with smaller screens */

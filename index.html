@@ -10,29 +10,33 @@
   <title>Color Game</title>
 </head>
 <body>
-<div id="top" class="normaldiv">
+<div id="top">
   <h1>RGB Guessing Game</h1>
   <div id="whatIsRgb">
     <img src="images/AdditiveColor.png" alt="RGB example" width="40%">
   </div>
 </div>
-<div id="life" class="normaldiv">
-  <h2>
-    <span id="colorDisplay">RGB</span>
-  </h2>
+<div id="life">
+  <div class="scoreOrMsg">
 
-  <div class="stripe" id="scoreDisplay">
-    <h2 id="rounds"></h2>
     <h2>
-    <span id="score"></span>
-    <span id="lives"></span>
+      <span id="colorDisplay">RGB</span>
     </h2>
-  </div>
 
-  <div id="correct">
-    <h1 class="stroke">
-      Yay!
-    </h1>
+    <div class="stripe" id="scoreDisplay">
+      <h2 id="rounds"></h2>
+      <h2>
+      <span id="score"></span>
+      <span id="lives"></span>
+      </h2>
+    </div>
+
+    <div id="msg-success">
+      <h1 class="stroke">
+        Yay!
+      </h1>
+    </div>
+
   </div>
 
   <div class="square"></div>

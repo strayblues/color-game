@@ -101,10 +101,10 @@ function handleCorrect(){
   $('.square').addClass('animateCorrect');
   $('#colorDisplay').hide();
   $('#scoreDisplay').hide();
-  $('#correct').show();
+  $('#msg-success').show();
   setTimeout(function(){
     $('.square').removeClass('animateCorrect');
-    $('#correct').hide();
+    $('#msg-success').hide();
     $('#colorDisplay').show();
     $('#scoreDisplay').show();
 //    document.body.style.background = 'whitesmoke';
