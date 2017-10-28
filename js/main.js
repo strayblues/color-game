@@ -58,10 +58,12 @@ function handleScore(){
   clickedColor = this.style.backgroundColor;
   if(clickedColor === pickedColor){
     setScore(score+1);
+    updateUserLevel("harder");
     handleCorrect();
   }
   else {
     setScore(score-1);
+    updateUserLevel("easier");
     handleWrong();
     this.style.backgroundColor = '#f5f5f5';
   }

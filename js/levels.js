@@ -1,3 +1,7 @@
+"use strict";
+
+var userLevel = 300;
+
 // L1 distance
 function colorDifference(a, b){
   var redDiff = Math.abs(a[0] - b[0]),
@@ -40,12 +44,29 @@ function generateRandomColors(num){
     var easiness = detectLevel(arr);
     //console.log(easiness);
     numTries++
-    if(easiness > 150) {
+    if((easiness > (userLevel-(userLevel/5))) && (easiness < (userLevel+(userLevel/5)))) {
       console.log("numTries: "+numTries);
       return arr;
     }
   }
 }
+
+
+function updateUserLevel(direction){
+  if(direction == "easier"){
+    userLevel += 20;
+  }
+  else if(direction == "harder"){
+    userLevel -= 10;
+  }
+  if(userLevel > 450){
+    userLevel = 450;
+  }
+  if(userLevel < 10){
+    userLevel = 10;
+  }
+}
+
 
 function randomColor(){
 
