@@ -53,7 +53,7 @@ function handleDeath(){
 
 function handleScore(){
   selectedItem = this;
-  //console.log(selectedItem); 
+  //console.log(selectedItem); // test
 
   clickedColor = this.style.backgroundColor;
   if(clickedColor === pickedColor){

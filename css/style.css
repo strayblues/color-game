@@ -183,6 +183,10 @@ a:hover {
   /*transform: scale(1.1);*/
 }
 
+.hidden {
+  display: none;
+}
+
 /* Devices with smaller screens */
 @media (max-width:768px){
   body {
