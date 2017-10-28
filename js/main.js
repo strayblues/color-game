@@ -9,7 +9,6 @@ var numSquares = 3,
     pickedColor,
     clickedColor,
     score,
-    level = 0,
 //    roundOver = false,
     roundCount = 0,
     lives = 3,
@@ -78,21 +77,6 @@ function handleScore(){
     reset();
   }, 1250);
 
-}
-
-function setLevel(){
-  if (lives < 5) {
-    level = 0;
-  }
-  if (lives >= 5) {
-    level = 1;
-  }
-  else if (lives >= 10){
-    level = 2;
-  }
-  else if (lives >= 15){
-    level = 3;
-  }
 }
 
 function handleCorrect(){
@@ -207,59 +191,4 @@ function changeColors(color){
 function pickColor(){
   var random = Math.floor(Math.random() * colors.length);
   return colors[random];
-}
-
-function generateRandomColors(num){
-  setLevel();
-  var arr = [];
-  //for(var k=0; k<num; k++){
-    if (level === 0){
-
-      for(var i=0; i<num; i++){
-        arr.push(randomColor());
-      } // array now has 3 elements, some may be the same
-
-      for(var j = 0; j < num; j++){
-        arr = arr.sort(); // Put similar elements together
-        for (var k=0; k<num; k++){ // Count occurences of a single element
-          if(arr[j] === arr[k]){
-            arr.pop(arr[k]); // Array may be less than 3 now
-            arr.push(randomColor()); // Now 3
-          } // Does it really repeat until they are all unique?
-        }
-      }
-    }
-    else {
-      arr.push(randomColor()); // TODO Make pushed colors different
-    }
-//  }
-  return arr;
-}
-
-function randomColor(){
-  if(RGBModel === true){
-    // Pick a 'red' from 0 to 255
-    var r = Math.floor(Math.random() * 256);
-    // Pick a 'green' from 0 to 255
-    var g = Math.floor(Math.random() * 256);
-    // Pick a 'blue' from 0 to 255
-    var b = Math.floor(Math.random() * 256);
-
-    return "rgb(" + r + ", " + g + ", " + b + ")";
-  }
-  else {
-    hexColor = '#' + Math.random().toString(16).slice(2, 8).toUpperCase();
-    return hexColor;
-  }
-}
-
-// For first-timers
-function practiceColor(){
-  var r = (Math.floor(Math.random() * 2) == 0) ? 0 : 255;
-  // Pick a 'green' value of 0 or 255
-  var g = (Math.floor(Math.random() * 2) == 0) ? 0 : 255;
-  // Pick a 'blue' value of 0 or 255
-  var b = (Math.floor(Math.random() * 2) == 0) ? 0 : 255;
-
-  return "rgb(" + r + ", " + g + ", " + b + ")";
 }
