@@ -12,7 +12,6 @@ var numSquares = 3,
 //    roundOver = false,
     roundCount = 0,
     lives = 3,
-    RGBModel = true,
     squares = document.querySelectorAll('.square'),
     colorDisplay = document.getElementById('colorDisplay'),
     scoreDisplay = document.querySelector('#score'),
@@ -156,9 +155,19 @@ function setRounds(newRoundNum){
   rounds = newRoundNum;
 }
 
+function colorToStr(){
+  for(var i=0; i<colors.length; i++){
+    var r = colors[i][0];
+    var g = colors[i][1];
+    var b = colors[i][2];
+    colors[i] = "rgb(" + r + ", " + g + ", " + b + ")";
+  }
+}
+
 function reset(){
   colors = 0;
   colors = generateRandomColors(numSquares);
+  colorToStr();
   // Pick a new random color from array
   pickedColor = pickColor();
   // Change color display to match picked color

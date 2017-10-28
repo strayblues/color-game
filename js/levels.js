@@ -19,18 +19,23 @@ function generateRandomColors(num){
 }
 
 function randomColor(){
-  if(RGBModel === true){
-    // Pick a 'red' from 0 to 255
-    var r = Math.floor(Math.random() * 256);
-    // Pick a 'green' from 0 to 255
-    var g = Math.floor(Math.random() * 256);
-    // Pick a 'blue' from 0 to 255
-    var b = Math.floor(Math.random() * 256);
 
-    return "rgb(" + r + ", " + g + ", " + b + ")";
-  }
-  else {
-    hexColor = '#' + Math.random().toString(16).slice(2, 8).toUpperCase();
-    return hexColor;
-  }
+  // Pick a 'red' from 0 to 255
+  var r = Math.floor(Math.random() * 256);
+  // Pick a 'green' from 0 to 255
+  var g = Math.floor(Math.random() * 256);
+  // Pick a 'blue' from 0 to 255
+  var b = Math.floor(Math.random() * 256);
+
+  return [r, g, b];
+
 }
+
+
+
+
+/*
+// Generate a random color and convert to Hex
+hexColor = '#' + Math.random().toString(16).slice(2, 8).toUpperCase();
+return hexColor;
+*/
