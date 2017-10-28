@@ -9,7 +9,6 @@ function colorDifference(a, b){
   return diff;
 }
 
-
 function detectLevel(colorList){
   var a = colorDifference(colorList[0], colorList[1]);
   var b = colorDifference(colorList[1], colorList[2]);
@@ -32,12 +31,20 @@ function practiceColor(){
 }
 
 function generateRandomColors(num){
-  var arr = [];
+  var numTries = 0;
+  while(true){
+    var arr = [];
     for(var i=0; i<num; i++){
       arr.push(randomColor());
     }
-    console.log(detectLevel(arr));
-  return arr;
+    var easiness = detectLevel(arr);
+    //console.log(easiness);
+    numTries++
+    if(easiness > 150) {
+      console.log("numTries: "+numTries);
+      return arr;
+    }
+  }
 }
 
 function randomColor(){
