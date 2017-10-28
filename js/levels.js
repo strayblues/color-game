@@ -45,7 +45,7 @@ function generateRandomColors(num){
     //console.log(easiness);
     numTries++
     if((easiness > (userLevel-(userLevel/5))) && (easiness < (userLevel+(userLevel/5)))) {
-      console.log("numTries: "+numTries);
+      //console.log("numTries: "+numTries);
       return arr;
     }
   }

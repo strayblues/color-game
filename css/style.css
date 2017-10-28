@@ -168,7 +168,7 @@ a:hover {
 
 .changeShape {
   transition: all .75s ease-in-out;
-  border-radius: 0;
+  /* border-radius: 0;*/
 }
 
 .opacity {
@@ -180,7 +180,7 @@ a:hover {
 }
 
 .animateCorrect:active {
-  transform: scale(1.1);
+  /*transform: scale(1.1);*/
 }
 
 /* Devices with smaller screens */
