@@ -44,10 +44,10 @@ function generateRandomColors(num){
 
 function updateUserLevel(direction){
   if(direction == "easier"){
-    userLevel += 40;
+    userLevel += 35;
   }
   else if(direction == "harder"){
-    userLevel -= 20;
+    userLevel -= 25;
   }
   if(userLevel > 500){
     userLevel = 500;
