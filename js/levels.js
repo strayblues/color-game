@@ -34,7 +34,7 @@ function generateRandomColors(num){
     var easiness = detectLevel(arr);
     //console.log(easiness);
     numTries++
-    if((easiness > (userLevel-(userLevel/10))) && (easiness < (userLevel+(userLevel/10)))) {
+    if((easiness > (userLevel-(userLevel/5))) && (easiness < (userLevel+(userLevel/5)))) {
       //console.log("numTries: "+numTries);
       return arr;
     }
@@ -44,18 +44,17 @@ function generateRandomColors(num){
 
 function updateUserLevel(direction){
   if(direction == "easier"){
-    userLevel += 35;
+    userLevel += 20;
   }
   else if(direction == "harder"){
-    userLevel -= 25;
+    userLevel -= 10;
   }
-  if(userLevel > 500){
-    userLevel = 500;
+  if(userLevel > 450){
+    userLevel = 450;
   }
   if(userLevel < 10){
     userLevel = 10;
   }
-  console.log(userLevel);
 }
 
 
