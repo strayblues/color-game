@@ -23,16 +23,6 @@ function detectLevel(colorList){
   return smallestDiff;
 }
 
-// For first-timers
-function practiceColor(){
-  var r = (Math.floor(Math.random() * 2) == 0) ? 0 : 255;
-  // Pick a 'green' value of 0 or 255
-  var g = (Math.floor(Math.random() * 2) == 0) ? 0 : 255;
-  // Pick a 'blue' value of 0 or 255
-  var b = (Math.floor(Math.random() * 2) == 0) ? 0 : 255;
-
-  return [r, g, b];
-}
 
 function generateRandomColors(num){
   var numTries = 0;
@@ -44,7 +34,7 @@ function generateRandomColors(num){
     var easiness = detectLevel(arr);
     //console.log(easiness);
     numTries++
-    if((easiness > (userLevel-(userLevel/5))) && (easiness < (userLevel+(userLevel/5)))) {
+    if((easiness > (userLevel-(userLevel/10))) && (easiness < (userLevel+(userLevel/10)))) {
       //console.log("numTries: "+numTries);
       return arr;
     }
@@ -54,17 +44,18 @@ function generateRandomColors(num){
 
 function updateUserLevel(direction){
   if(direction == "easier"){
-    userLevel += 20;
+    userLevel += 40;
   }
   else if(direction == "harder"){
-    userLevel -= 10;
+    userLevel -= 20;
   }
-  if(userLevel > 450){
-    userLevel = 450;
+  if(userLevel > 500){
+    userLevel = 500;
   }
   if(userLevel < 10){
     userLevel = 10;
   }
+  console.log(userLevel);
 }
 
 
@@ -81,9 +72,19 @@ function randomColor(){
 }
 
 
-
-
 /*
+// For first-timers
+function practiceColor(){
+  var r = (Math.floor(Math.random() * 2) == 0) ? 0 : 255;
+  // Pick a 'green' value of 0 or 255
+  var g = (Math.floor(Math.random() * 2) == 0) ? 0 : 255;
+  // Pick a 'blue' value of 0 or 255
+  var b = (Math.floor(Math.random() * 2) == 0) ? 0 : 255;
+
+  return [r, g, b];
+}
+
+
 // Generate a random color and convert to Hex
 hexColor = '#' + Math.random().toString(16).slice(2, 8).toUpperCase();
 return hexColor;
